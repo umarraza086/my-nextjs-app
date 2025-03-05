@@ -10,20 +10,27 @@ pipeline {
         
         stage('Install Dependencies') {
             steps {
-                sh 'npm install'
+                dir('my-nextjs-app') {  // Move into the project folder
+                    sh 'npm install'
+                }
             }
         }
         
         stage('Build') {
             steps {
-                sh 'npm run build'
+                dir('my-nextjs-app') {  
+                    sh 'npm run build'
+                }
             }
         }
         
         stage('Deploy') {
             steps {
-                sh 'npm start &'
+                dir('my-nextjs-app') {  
+                    sh 'npm start &'
+                }
             }
         }
     }
 }
+     
